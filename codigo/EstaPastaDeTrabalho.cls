@@ -9,6 +9,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 
+Option Explicit
 Private Sub Workbook_Open()
     
     'Tira filtro ao abrir a planilha
