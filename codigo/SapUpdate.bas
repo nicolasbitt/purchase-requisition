@@ -1,4 +1,5 @@
 Attribute VB_Name = "SapUpdate"
+
 Option Explicit
 Sub SAP_ME5A_UPDATE()
 
@@ -27,25 +28,25 @@ Sub SAP_ME5A_UPDATE()
     Set NConnection = NApplication.Children(0)
     Set session = NConnection.Children(0)
     
-    requisitantes = Array("XBBQN", "RABQV", "LXKFO")
+    requisitantes = Array("USUARIO01", "USUARIO02", "USUARIO03")
     Set wsRelatorio = ThisWorkbook.Sheets("Relatorio")
     
     wsRelatorio.Range("A2:G120").ClearContents
     
     For i = 0 To UBound(requisitantes)
     
-        'Pesquisando a transação + Enter
+        'Pesquisando a transacao + Enter
         session.findById("wnd[0]/tbar[0]/okcd").Text = "/nME5A"
         session.findById("wnd[0]").sendVKey 0
         
-        'Tela da transação ME5A
+        'Tela da transacao ME5A
         session.findById("wnd[0]/usr/ctxtS_WERKS-LOW").Text = ""
-        session.findById("wnd[0]/usr/chkP_FREIG").Selected = True 'Marcar as caixas de seleção
+        session.findById("wnd[0]/usr/chkP_FREIG").Selected = True 'Marcar as caixas de selecao
         session.findById("wnd[0]/usr/chkP_MEMORY").Selected = True
-        session.findById("wnd[0]/usr/txtP_AFNAM").Text = requisitantes(i) 'Requisitante, roda novamente selecionando o próximo da lista
+        session.findById("wnd[0]/usr/txtP_AFNAM").Text = requisitantes(i) 'Requisitante, roda novamente selecionando o proximo da lista
         session.findById("wnd[0]").sendVKey 8
         
-        'Se caso aparecer a msg/sbar, significa que não tem RCs desse requisitante
+        'Se caso aparecer a msg/sbar, significa que nao tem RCs desse requisitante
         msg = session.findById("wnd[0]/sbar").Text
     
         If msg <> "" Then
@@ -54,7 +55,7 @@ Sub SAP_ME5A_UPDATE()
         
         Set grid = session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell/shellcont[1]/shell/shellcont[1]/shell")
         
-        'Selecionando todo relatório e copiando
+        'Selecionando todo relatorio e copiando
         grid.SelectAll
         grid.contextMenu
         grid.selectContextMenuItemByPosition "0"
@@ -77,11 +78,11 @@ ProximoReq:
     Set rng2 = wsRelatorio.Range("F2:G120")
     
     
-    'Adicionar aqui o filtro de apenas RCs com código de material _
+    'Adicionar aqui o filtro de apenas RCs com codigo de material _
     Linha abaixo se refere ao filtro da coluna "Material" que tira os vazios:
     rng.AutoFilter Field:=2, Criteria1:="<>"
     
-    'Selecionando Range para editar no próximo bloco de código
+    'Selecionando Range para editar no proximo bloco de codigo
     With wsRelatorio
         .Range("A1").Select
         .Range(Selection, Selection.End(xlToRight)).Select
@@ -103,10 +104,10 @@ ProximoReq:
         .VerticalAlignment = xlTop
     End With
     
-    '".Sort" (Classifcar) _
-    "Key1:=.Range("H1")" (Coluna à ser classificada) _
-    "Order1:=xlAscending" (Ordem Crescente) _
-    "Header:=xlYes" (Tem cabeçalhos)
+    '".Sort" (Classifcar) 
+    '"Key1:=.Range("H1")" (Coluna a ser classificada) 
+    '"Order1:=xlAscending" (Ordem Crescente) 
+    '"Header:=xlYes" (Tem cabecalhos)
     
     With wsRelatorio
         .Range("A1:H120").Sort Key1:=.Range("H1"), Order1:=xlAscending, Header:=xlYes
@@ -114,7 +115,7 @@ ProximoReq:
     
     wsRelatorio.Range("A1").Select
     
-    'MsgBox "Transação concluída!", vbInformation, "Sucesso!"
+    'MsgBox "Transacao concluida!", vbInformation, "Sucesso!"
     
 GoTo sair
     
