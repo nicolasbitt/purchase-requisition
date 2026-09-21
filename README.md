@@ -40,3 +40,17 @@ Comparing the two show immediately which PRs are late. For example, a PR with **
 - Eliminated manual calculations and the need to cross-check lead-time information across different sources.
 - Standardized the weekly report and follow-up process with Procurement.
 
+## Technologies Used
+
+- VBA - Data processing, calculations, report formatting, filtering, and Outlook email generation.
+- SAP GUI Scripting - Automated interaction with SAP ME5A transaction and extraction of purchase requesitions data.
+- PowerShell - Automated workbook execution through COM and Windows Task Scheduler integration.
+- Microsoft Excel - Report generation, data processing, days until delivery, and material lead-time `VLOOKUP`.
+- Microsoft Outlook - Automated preparation of the weekly follow up email.
+- Windows Task Scheduler - Weekly unattended execution of the automation.
+
+## Author
+
+**Nicolas Bittencourt** 
+
+[GitHub](https://github.com/nicolasbitt)
