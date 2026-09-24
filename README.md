@@ -11,10 +11,10 @@ This was repettive and time-consuming, and the raw **SAP** list gave no clear vi
 ## How It Works
 
 ```bash
-1. **PowerShell script** opens `ME5A_REPORT.xlsm` in the background (Excel hidden) through COM.
-2. **`SapUpdate` module** attaches to the open SAP GUI session, runs ME5A for each requester in the configuration list, copies the ALV Grid output into the report sheet, and formats it (filters, borders, alignment, sorting).
-3. **Two calculated columns** are added to the report: **days until delivery** (delivery date from SAP minus today) and the material's **lead time**, fetched with `VLOOKUP` on the material code. Comparing them shows how urgent each PR is. For example, a PR with 28 days until delivery and a 30-day lead time is **2 days late**, meaning it should already have become a purchase order.
-4. **`Email` module** builds a corporate-style email in Outlook: recipients in *To* and *CC*, a short message, and the report table pasted in the body. The email window opens ready for review; **it is not sent automatically**.
+1. PowerShell script opens `ME5A_REPORT.xlsm` in the background (Excel hidden) through COM.
+2. `SapUpdate` module attaches to the open SAP GUI session, runs ME5A for each requester in the configuration list, copies the ALV Grid output into the report sheet, and formats it (filters, borders, alignment, sorting).
+3. Two calculated columns are added to the report: days until delivery (delivery date from SAP minus today) and the material's lead time, fetched with `VLOOKUP` on the material code. Comparing them shows how urgent each PR is. For example, a PR with 28 days until delivery and a 30-day lead time is 2 days late, meaning it should already have become a purchase order.
+4. `Email` module builds a corporate-style email in Outlook: recipients in To and CC, a short message, and the report table pasted in the body. The email window opens ready for review; it is not sent automatically.
 5. A confirmation message tells the user that the weekly email is ready to send.
 ```
 
