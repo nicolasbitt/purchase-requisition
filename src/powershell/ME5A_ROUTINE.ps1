@@ -5,8 +5,6 @@ $caminho = "C:\Projetos\ME5A\ME5A_REPORT.xlsm"
 
 $wb = $null
 
-# Colocar aqui para verificar se a conexao com o SAP existe
-
 try {
 	
 	# Colocar como false quando subir para producao, para rodar em segundo plano
